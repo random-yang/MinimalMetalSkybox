@@ -34,3 +34,19 @@ fragment float4 skyboxFragment(
     constexpr sampler cubeSampler(filter::linear, mip_filter::linear);
     return cubeTexture.sample(cubeSampler, in.texCoord);
 }
+
+
+// 正方形的顶点着色器
+vertex VertexOut squareVertex(const device float3* vertices [[buffer(0)]],
+                            constant float4x4& viewProjectionMatrix [[buffer(1)]],
+                            uint vertexID [[vertex_id]]) {
+    VertexOut out;
+    float3 position = vertices[vertexID];
+    out.position = viewProjectionMatrix * float4(position, 1.0);
+    return out;
+}
+
+// 正方形的片段着色器
+fragment float4 squareFragment(constant float4* color [[buffer(0)]]) {
+    return *color;
+}
