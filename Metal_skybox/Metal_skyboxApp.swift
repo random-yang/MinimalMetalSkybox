@@ -11,7 +11,8 @@ import SwiftUI
 struct Metal_skyboxApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MetalView()
+                .ignoresSafeArea()
         }
     }
 }
